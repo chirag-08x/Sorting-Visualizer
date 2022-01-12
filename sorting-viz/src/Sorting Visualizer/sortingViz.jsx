@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { bubbleSort } from "./bubbleSort";
+import { bubbleSort } from "../Sorting Algorithms/bubbleSort";
 
 const SortingViz = () => {
   const [data, setData] = useState([]);
