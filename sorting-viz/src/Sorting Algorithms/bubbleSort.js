@@ -1,4 +1,4 @@
-export function bubbleSort(data) {
+export function bubblesort(data) {
   const animations = [];
   let isSorted = false;
   let counter = 0;
@@ -8,6 +8,7 @@ export function bubbleSort(data) {
       if (data[i] > data[i + 1]) {
         swap(i, i + 1, data);
         isSorted = false;
+        animations.push([i, i + 1]);
         animations.push([i, i + 1]);
       }
     }
