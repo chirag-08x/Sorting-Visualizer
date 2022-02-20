@@ -7,16 +7,17 @@ const PRIMARY_COLOR = "#f15025";
 const SECONDARY_COLOR = "#00ff00";
 const MAIN_COLOR = "#0099ff";
 
-let ANIMATION_SPEED = "50";
+let ANIMATION_SPEED = 50;
 
 const SortingViz = () => {
   const [data, setData] = useState([]);
   const refContainer = useRef(null);
-  const [value, setValue] = useState(5);
+  const [size, setSize] = useState(100);
+  const [speed, setSpeed] = useState(150);
 
-  const generateRandomNumbers = () => {
+  const generateRandomNumbers = (size) => {
     const randomNumbers = [];
-    for (let i = 1; i <= 60; i++) {
+    for (let i = 1; i <= size; i++) {
       const currentRandomNumber = getRandomNumbers(5, 600);
       randomNumbers.push(currentRandomNumber);
     }
@@ -24,31 +25,30 @@ const SortingViz = () => {
   };
 
   useEffect(() => {
-    generateRandomNumbers();
-  }, []);
+    generateRandomNumbers(size);
+  }, [size]);
 
-  useEffect(() => {
-    if (data.length > 0) {
-      const len = data.length;
-      ANIMATION_SPEED =
-        len <= 25
-          ? "500"
-          : len <= 45
-          ? "150"
-          : len <= 80
-          ? "80"
-          : len <= 110
-          ? "50"
-          : "40";
-      console.log(ANIMATION_SPEED);
-    }
-  }, [data]);
+  const handleSliderSize = (e) => {
+    setSize(e.target.value);
+  };
+
+  const handleSliderSpeed = (e) => {
+    setSpeed(e.target.value);
+    ANIMATION_SPEED = 200 - e.target.value;
+    console.log(e.target.value, ANIMATION_SPEED);
+  };
+
+  const handleGenerateNewArray = () => {
+    generateRandomNumbers(100);
+    setSize(100);
+    setSpeed(150);
+  };
 
   const sortBars = (animation) => {
-    console.log(ANIMATION_SPEED);
+    console.log("Speed", ANIMATION_SPEED);
     for (let item = 0; item < animation.length; item++) {
       const bars = [...refContainer.current.childNodes];
-      const changeColor = item % 2 == 0;
+      const changeColor = item % 2 === 0;
       const [barOne, barTwo] = animation[item];
       if (changeColor) {
         setTimeout(() => {
@@ -78,10 +78,7 @@ const SortingViz = () => {
     sortBars(animations);
   };
 
-  const mergeSort = () => {
-    // const animations = mainMergeSort([...data]);
-    // sortBars(animations);
-  };
+  const mergeSort = () => {};
 
   return (
     <main>
@@ -105,7 +102,7 @@ const SortingViz = () => {
           </article>
 
           <article className="helpers">
-            <button className="btn" onClick={generateRandomNumbers}>
+            <button className="btn" onClick={handleGenerateNewArray}>
               generate new array
             </button>
           </article>
@@ -125,15 +122,31 @@ const SortingViz = () => {
       </article>
 
       <article className="range">
+        <label htmlFor="size" className="slider-label">
+          Change Size
+        </label>
         <input
           type="range"
           min="5"
           max="150"
-          // value="50"
-          value={value}
-          className="slider"
-          id="myRange"
-          onChange={(e) => setValue(e.target.value)}
+          value={size}
+          className="slider slider-size"
+          id="size"
+          onChange={handleSliderSize}
+        />
+
+        <label htmlFor="speed" className="slider-label">
+          Change Speed
+        </label>
+        <input
+          type="range"
+          min="0"
+          max="170"
+          step={10}
+          value={speed}
+          className="slider slider-speed"
+          id="speed"
+          onChange={handleSliderSpeed}
         />
       </article>
     </main>
@@ -145,3 +158,19 @@ export default SortingViz;
 const getRandomNumbers = (min, max) => {
   return Math.round(Math.random() * (max - min + 1) + min);
 };
+
+// useEffect(() => {
+//   if (data.length > 0) {
+//     const len = data.length;
+//     ANIMATION_SPEED =
+//       len <= 25
+//         ? 500
+//         : len <= 45
+//         ? 150
+//         : len <= 80
+//         ? 80
+//         : len <= 110
+//         ? 50
+//         : 30;
+//   }
+// }, [data]);
