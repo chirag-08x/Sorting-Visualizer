@@ -6,7 +6,7 @@ import { AppProvider } from "./Sorting Visualizer/context";
 const App = () => {
   return (
     <AppProvider>
-      <Index />;
+      <Index />
     </AppProvider>
   );
 };

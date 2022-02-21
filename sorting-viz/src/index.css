@@ -54,6 +54,15 @@ main {
 
 .single-number {
   background-color: #0099ff;
+  display: flex;
+  justify-content: center;
+}
+
+.num {
+  font-family: sans-serif;
+  color: white;
+  font-weight: bold;
+  margin-top: 0.5rem;
 }
 
 .btn {
@@ -125,4 +134,26 @@ main {
 .slider-label {
   font-size: 1.15rem;
   text-align: center;
+}
+
+/* Disable btn */
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+  text-decoration: line-through;
+}
+
+button:disabled:hover {
+  opacity: 0.5;
+  background: transparent;
+  color: white;
+}
+
+input:disabled {
+  opacity: 0.3;
+}
+
+input:disabled:hover {
+  opacity: 0.3;
 }

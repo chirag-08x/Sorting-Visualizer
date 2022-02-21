@@ -12,7 +12,12 @@ const SortingBody = () => {
     handleSliderSize,
     speed,
     handleSliderSpeed,
+    sorting,
   } = useGlobalContext();
+
+  const isBtnDisabled = () => {
+    return sorting === true;
+  };
 
   return (
     <main>
@@ -23,20 +28,38 @@ const SortingBody = () => {
           </article>
 
           <article className="nav-links">
-            <button className="btn">merge sort</button>
-            <button className="btn" onClick={quickSort}>
+            <button className="btn" disabled={isBtnDisabled()}>
+              merge sort
+            </button>
+            <button
+              className="btn"
+              onClick={quickSort}
+              disabled={isBtnDisabled()}
+            >
               quick sort
             </button>
-            <button className="btn" onClick={heapSort}>
+            <button
+              className="btn"
+              onClick={heapSort}
+              disabled={isBtnDisabled()}
+            >
               heap sort
             </button>
-            <button className="btn" onClick={bubbleSort}>
+            <button
+              className="btn"
+              onClick={bubbleSort}
+              disabled={isBtnDisabled()}
+            >
               bubble sort
             </button>
           </article>
 
           <article className="helpers">
-            <button className="btn" onClick={handleGenerateNewArray}>
+            <button
+              className="btn"
+              onClick={handleGenerateNewArray}
+              disabled={isBtnDisabled()}
+            >
               generate new array
             </button>
           </article>
@@ -50,7 +73,9 @@ const SortingBody = () => {
               className="single-number"
               style={{ height: `${item}px` }}
               key={index}
-            ></div>
+            >
+              {data.length <= 20 && <p className="num">{item}</p>}
+            </div>
           );
         })}
       </article>
@@ -67,6 +92,7 @@ const SortingBody = () => {
           className="slider slider-size"
           id="size"
           onChange={handleSliderSize}
+          disabled={isBtnDisabled()}
         />
 
         <label htmlFor="speed" className="slider-label">
@@ -81,6 +107,7 @@ const SortingBody = () => {
           className="slider slider-speed"
           id="speed"
           onChange={handleSliderSpeed}
+          disabled={isBtnDisabled()}
         />
       </article>
     </main>

@@ -1,7 +1,7 @@
 export const randomNums = (size) => {
   const randomNumbers = [];
   for (let i = 1; i <= size; i++) {
-    const currentRandomNumber = getRandomNumbers(5, 600);
+    const currentRandomNumber = getRandomNumbers(20, 600);
     randomNumbers.push(currentRandomNumber);
   }
   return randomNumbers;

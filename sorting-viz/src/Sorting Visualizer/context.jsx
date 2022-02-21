@@ -14,6 +14,7 @@ export const AppProvider = ({ children }) => {
   const refContainer = useRef(null);
   const [size, setSize] = useState(100);
   const [speed, setSpeed] = useState(150);
+  const [sorting, setSorting] = useState(false);
 
   const generateRandomNumbers = (size) => {
     const randomNumbers = randomNums(size);
@@ -34,25 +35,45 @@ export const AppProvider = ({ children }) => {
   };
 
   const handleGenerateNewArray = () => {
-    generateRandomNumbers(100);
-    setSize(100);
-    setSpeed(150);
+    generateRandomNumbers(data.length);
+    // generateRandomNumbers(100);
+    // setSize(100);
+    // setSpeed(150);
+  };
+
+  const sortingStarted = () => {
+    setSorting(true);
+  };
+
+  const sortingEnded = () => {
+    setSorting(false);
+  };
+
+  const sortingArgs = (animations) => {
+    return sortBars(
+      animations,
+      ANIMATION_SPEED,
+      refContainer,
+      data,
+      setData,
+      sortingStarted,
+      sortingEnded
+    );
   };
 
   const bubbleSort = () => {
     const animations = bubblesort([...data]);
-    sortBars(animations, ANIMATION_SPEED, refContainer, data, setData);
+    sortingArgs(animations);
   };
 
   const heapSort = () => {
     const animations = heapsort([...data]);
-    sortBars(animations, ANIMATION_SPEED, refContainer, data, setData);
-    console.log(animations);
+    sortingArgs(animations);
   };
 
   const quickSort = () => {
     const animations = quicksort([...data]);
-    sortBars(animations, ANIMATION_SPEED, refContainer, data, setData);
+    sortingArgs(animations);
   };
 
   return (
@@ -69,6 +90,7 @@ export const AppProvider = ({ children }) => {
         speed,
         handleSliderSpeed,
         ANIMATION_SPEED,
+        sorting,
       }}
     >
       {children}
