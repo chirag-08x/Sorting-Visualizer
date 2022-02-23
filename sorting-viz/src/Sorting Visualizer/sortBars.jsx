@@ -17,6 +17,7 @@ export const sortBars = (
     const bars = [...refContainer.current.childNodes];
     const changeColor = item % 2 === 0;
     const [barOne, barTwo] = animation[item];
+
     if (changeColor) {
       setTimeout(() => {
         bars[barOne].style.backgroundColor = PRIMARY_COLOR;
@@ -30,6 +31,7 @@ export const sortBars = (
         setData([...data]);
         if (item === animLen - 1) {
           sortingEnded();
+          console.log(data);
         }
       }, item * ANIMATION_SPEED);
     }
