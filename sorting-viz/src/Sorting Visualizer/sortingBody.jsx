@@ -5,6 +5,7 @@ const SortingBody = () => {
     bubbleSort,
     quickSort,
     heapSort,
+    mergeSort,
     handleGenerateNewArray,
     refContainer,
     data,
@@ -28,7 +29,11 @@ const SortingBody = () => {
           </article>
 
           <article className="nav-links">
-            <button className="btn" disabled={isBtnDisabled()}>
+            <button
+              className="btn"
+              onClick={mergeSort}
+              disabled={isBtnDisabled()}
+            >
               merge sort
             </button>
             <button
@@ -101,7 +106,8 @@ const SortingBody = () => {
         <input
           type="range"
           min="0"
-          max="170"
+          // max="170"
+          max="180"
           step={10}
           value={speed}
           className="slider slider-speed"

@@ -2,6 +2,7 @@ import { createContext, useRef, useState, useEffect, useContext } from "react";
 import { bubblesort } from "../Sorting Algorithms/bubbleSort.js";
 import { quicksort } from "../Sorting Algorithms/quickSort.js";
 import { heapSort as heapsort } from "../Sorting Algorithms/heapsort.js";
+import { mergesort } from "../Sorting Algorithms/mergeSort.js";
 import { sortBars } from "./sortBars.jsx";
 import { randomNums } from "./randomnums.js";
 
@@ -36,9 +37,6 @@ export const AppProvider = ({ children }) => {
 
   const handleGenerateNewArray = () => {
     generateRandomNumbers(data.length);
-    // generateRandomNumbers(100);
-    // setSize(100);
-    // setSpeed(150);
   };
 
   const sortingStarted = () => {
@@ -76,12 +74,18 @@ export const AppProvider = ({ children }) => {
     sortingArgs(animations);
   };
 
+  const mergeSort = () => {
+    const animations = mergesort([...data]);
+    sortingArgs(animations);
+  };
+
   return (
     <AppContext.Provider
       value={{
         bubbleSort,
         quickSort,
         heapSort,
+        mergeSort,
         handleGenerateNewArray,
         refContainer,
         data,
