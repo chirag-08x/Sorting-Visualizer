@@ -1,5 +1,5 @@
 const animations = [];
-function mergesort(array) {
+export function mergesort(array) {
   mainMergeSort(array);
   return animations;
 }

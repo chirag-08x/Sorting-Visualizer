@@ -31,7 +31,6 @@ export const sortBars = (
         setData([...data]);
         if (item === animLen - 1) {
           sortingEnded();
-          console.log(data);
         }
       }, item * ANIMATION_SPEED);
     }
