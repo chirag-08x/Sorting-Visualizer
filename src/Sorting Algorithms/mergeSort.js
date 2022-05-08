@@ -25,12 +25,8 @@ function mergerSortHelper(array, leftHalf, rightHalf) {
   while (i < leftHalf.length && j < rightHalf.length) {
     if (leftHalf[i] <= rightHalf[j]) {
       array[k++] = leftHalf[i++];
-      animations.push([i, j]);
-      animations.push([i, j]);
     } else {
       array[k++] = rightHalf[j++];
-      animations.push([i, j]);
-      animations.push([i, j]);
     }
   }
   while (i < leftHalf.length) {
@@ -45,5 +41,3 @@ function mergerSortHelper(array, leftHalf, rightHalf) {
   }
   return array;
 }
-
-// console.log(mergesort([5, 6, 2, 8, 6]));

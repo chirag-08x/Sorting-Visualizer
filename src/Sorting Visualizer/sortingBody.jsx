@@ -31,13 +31,6 @@ const SortingBody = () => {
           <article className="nav-links">
             <button
               className="btn"
-              onClick={mergeSort}
-              disabled={isBtnDisabled()}
-            >
-              merge sort
-            </button>
-            <button
-              className="btn"
               onClick={quickSort}
               disabled={isBtnDisabled()}
             >
@@ -56,6 +49,13 @@ const SortingBody = () => {
               disabled={isBtnDisabled()}
             >
               bubble sort
+            </button>
+            <button
+              className="btn"
+              onClick={mergeSort}
+              disabled={isBtnDisabled()}
+            >
+              merge sort
             </button>
           </article>
 

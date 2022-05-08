@@ -13,7 +13,7 @@ let ANIMATION_SPEED = 50;
 export const AppProvider = ({ children }) => {
   const [data, setData] = useState([]);
   const refContainer = useRef(null);
-  const [size, setSize] = useState(100);
+  const [size, setSize] = useState(90);
   const [speed, setSpeed] = useState(150);
   const [sorting, setSorting] = useState(false);
 
