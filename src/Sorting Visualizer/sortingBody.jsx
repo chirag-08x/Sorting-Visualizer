@@ -53,7 +53,8 @@ const SortingBody = () => {
             <button
               className="btn"
               onClick={mergeSort}
-              disabled={isBtnDisabled()}
+              // disabled={isBtnDisabled()}
+              disabled
             >
               merge sort
             </button>
